@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { Button } from "@/components/ui/button"
+import { ChakraProvider } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
+
 
 import data from "@/data/ngsl.json"
 
@@ -32,9 +34,11 @@ const Ngsl = () => {
 
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-4xl font-extrabold">VocaBook</h1>
-      <Ngsl />
-    </main>
+    <ChakraProvider>
+      <main>
+        <h1 className="text-4xl font-extrabold">VocaBook</h1>
+        <Ngsl />
+      </main>
+    </ChakraProvider>
   )
 }
