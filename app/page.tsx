@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -8,19 +8,22 @@ import {
   Card,
   CardBody,
   CardHeader,
-  ChakraProvider,
   Container,
   Flex,
   Heading,
   SimpleGrid,
+  Skeleton,
   Spacer,
   Stack,
   StackDivider,
   Text,
-} from '@chakra-ui/react'
-import { useState } from 'react'
+} from '@chakra-ui/react';
+import {
+  useEffect,
+  useState
+} from 'react';
 
-import data from "@/data/ngsl.json"
+import data from "@/data/ngsl.json";
 
 function rangedRand(min: number, max: number) {
   min = Math.ceil(min)
@@ -54,18 +57,30 @@ function generateProblem() {
   }
 }
 
+type Problem = {
+  question: string,
+  answer: string,
+  selections: string[]
+}
+
 const Ngsl = () => {
-  const [problem, setProblem] = useState(generateProblem())
+  const [problem, setProblem] = useState<Problem>({ question: "", answer: "", selections: [""] })
   const [hasPressedSelection, setHasPressedSelection] = useState(false)
   const [collect, setCollect] = useState(false)
+
+  useEffect(() => {
+    setProblem(generateProblem())
+  }, []);
 
   const Problem = () => {
     return (
       <Box>
-        <Text fontSize="2xl" as="b">
-          {problem.question}
-        </Text>
-        <Text fontSize="sm">以下から意味を選択してください。</Text>
+        <Skeleton isLoaded={problem.question != ""}>
+          <Text fontSize="2xl" as="b">
+            {problem.question}
+          </Text>
+          <Text fontSize="sm">以下から意味を選択してください。</Text>
+        </Skeleton>
       </Box>
     )
   }
@@ -90,7 +105,7 @@ const Ngsl = () => {
   const PageChanger = () => {
     const handleNextPrev = () => {
       setHasPressedSelection(false)
-      setProblem(generateProblem())
+      setProblem(generateProblem)
     }
     return (
       <Flex>
@@ -111,8 +126,7 @@ const Ngsl = () => {
               <Text color={collect ? 'teal' : 'tomato'} as="b">
                 {collect ? '正解' : '不正解'}
               </Text>
-              <Text>
-                {problem.question}は「{problem.answer}」という意味です。
+              <Text>{problem.question}は「{problem.answer}」という意味です。
               </Text>
             </CardBody>
           </Card>}
@@ -144,8 +158,6 @@ const Ngsl = () => {
 
 export default function Home() {
   return (
-    <ChakraProvider>
-      <Ngsl />
-    </ChakraProvider>
+    <Ngsl />
   )
 }
