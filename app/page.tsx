@@ -22,25 +22,26 @@ import { useState } from 'react'
 
 import data from "@/data/ngsl.json"
 
-function generateProblem() {
-  function rangedRand(min: number, max: number) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min) + min)
-  }
-  function createArray(arrayLength: number, pIdx: number, max: number) {
-    const set = new Set<number>()
-    set.add(pIdx) // pIdxを確実に含む
+function rangedRand(min: number, max: number) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min) + min)
+}
 
-    while (set.size < arrayLength) {
-      const randomNumber = rangedRand(0, max)
-      if (!set.has(randomNumber)) {
-        set.add(randomNumber)
-      }
+function createArray(arrayLength: number, pIdx: number, max: number) {
+  const set = new Set<number>()
+  set.add(pIdx) // pIdxを確実に含む
+
+  while (set.size < arrayLength) {
+    const randomNumber = rangedRand(0, max)
+    if (!set.has(randomNumber)) {
+      set.add(randomNumber)
     }
-    return [...set]
   }
+  return [...set];
+}
 
+function generateProblem() {
   let pIdx = rangedRand(0, data.length)
   let selections = createArray(4, pIdx, data.length).map(
     (i) => data[i]['japanese']
@@ -78,8 +79,8 @@ const Ngsl = () => {
     return (
       <ButtonGroup onClick={handleChoice} display="block">
         <SimpleGrid columns={2} spacing={2}>
-          {problem.selections.map((s) => {
-            return <Button key={s} value={s}>{s}</Button>
+          {problem.selections.map((s, i) => {
+            return <Button key={i} value={s}>{s}</Button>
           })}
         </SimpleGrid>
       </ButtonGroup>
@@ -144,9 +145,7 @@ const Ngsl = () => {
 export default function Home() {
   return (
     <ChakraProvider>
-      <main>
-        <Ngsl />
-      </main>
+      <Ngsl />
     </ChakraProvider>
   )
 }
