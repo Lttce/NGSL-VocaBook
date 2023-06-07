@@ -1,10 +1,10 @@
 "use client";
 
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
 
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -24,5 +24,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  )
+  );
 }

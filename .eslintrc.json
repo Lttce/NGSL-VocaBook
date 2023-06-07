@@ -9,6 +9,13 @@
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+
+    "semi": ["error", "always"],
+    "semi-spacing": ["error", {"after": true, "before": false}],
+    "semi-style": ["error", "last"],
+    "no-extra-semi": "error",
+    "no-unexpected-multiline": "error",
+    "no-unreachable": "error"
   }
 }
