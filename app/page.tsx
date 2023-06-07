@@ -26,19 +26,19 @@ import {
 import data from "@/data/ngsl.json";
 
 function rangedRand(min: number, max: number) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min) + min)
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function createArray(arrayLength: number, pIdx: number, max: number) {
-  const set = new Set<number>()
-  set.add(pIdx) // pIdxを確実に含む
+  const set = new Set<number>();
+  set.add(pIdx); // pIdxを確実に含む
 
   while (set.size < arrayLength) {
-    const randomNumber = rangedRand(0, max)
+    const randomNumber = rangedRand(0, max);
     if (!set.has(randomNumber)) {
-      set.add(randomNumber)
+      set.add(randomNumber);
     }
   }
   return [...set];
@@ -53,17 +53,17 @@ function shuffleArray(array: any[]) {
 }
 
 function generateProblem() {
-  let pIdx = rangedRand(0, data.length)
-  
+  let pIdx = rangedRand(0, data.length);
+
   let selections = shuffleArray(createArray(4, pIdx, data.length)).map(
     (i) => data[i]['japanese']
-  )
+  );
 
   return {
     question: data[pIdx]['lemma'],
     answer: data[pIdx]['japanese'],
     selections: selections,
-  }
+  };
 }
 
 type Problem = {
@@ -73,12 +73,12 @@ type Problem = {
 }
 
 const Ngsl = () => {
-  const [problem, setProblem] = useState<Problem>({ question: "", answer: "", selections: [""] })
-  const [hasPressedSelection, setHasPressedSelection] = useState(false)
-  const [collect, setCollect] = useState(false)
+  const [problem, setProblem] = useState<Problem>({ question: "", answer: "", selections: [""] });
+  const [hasPressedSelection, setHasPressedSelection] = useState(false);
+  const [collect, setCollect] = useState(false);
 
   useEffect(() => {
-    setProblem(generateProblem())
+    setProblem(generateProblem());
   }, []);
 
   const Problem = () => {
@@ -91,31 +91,31 @@ const Ngsl = () => {
           <Text fontSize="sm">以下から意味を選択してください。</Text>
         </Skeleton>
       </Box>
-    )
-  }
+    );
+  };
 
   const Choices = () => {
     const handleChoice = (e: any) => {
-      setHasPressedSelection(true)
-      setCollect(e.target.value == problem.answer)
-    }
+      setHasPressedSelection(true);
+      setCollect(e.target.value == problem.answer);
+    };
 
     return (
       <ButtonGroup onClick={handleChoice} display="block">
         <SimpleGrid columns={2} spacing={2}>
           {problem.selections.map((s, i) => {
-            return <Button key={i} value={s}>{s}</Button>
+            return <Button key={i} value={s}>{s}</Button>;
           })}
         </SimpleGrid>
       </ButtonGroup>
-    )
-  }
+    );
+  };
 
   const PageChanger = () => {
     const handleNextPrev = () => {
-      setHasPressedSelection(false)
-      setProblem(generateProblem)
-    }
+      setHasPressedSelection(false);
+      setProblem(generateProblem);
+    };
     return (
       <Flex>
         <Spacer />
@@ -123,8 +123,8 @@ const Ngsl = () => {
           <ChevronRightIcon />
         </Button>
       </Flex>
-    )
-  }
+    );
+  };
 
   const Answer = () => {
     return (
@@ -140,8 +140,8 @@ const Ngsl = () => {
             </CardBody>
           </Card>}
       </>
-    )
-  }
+    );
+  };
 
   return (
     <Container>
@@ -161,12 +161,12 @@ const Ngsl = () => {
         <Answer />
       </Stack>
     </Container>
-  )
-}
+  );
+};
 
 
 export default function Home() {
   return (
     <Ngsl />
-  )
+  );
 }
