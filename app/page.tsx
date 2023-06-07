@@ -44,9 +44,18 @@ function createArray(arrayLength: number, pIdx: number, max: number) {
   return [...set];
 }
 
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // 要素の入れ替え
+  }
+  return array;
+}
+
 function generateProblem() {
   let pIdx = rangedRand(0, data.length)
-  let selections = createArray(4, pIdx, data.length).map(
+  
+  let selections = shuffleArray(createArray(4, pIdx, data.length)).map(
     (i) => data[i]['japanese']
   )
 
