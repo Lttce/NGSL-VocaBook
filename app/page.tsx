@@ -104,7 +104,7 @@ const Ngsl = () => {
 
     return (
       <ButtonGroup onClick={handleChoice} display="block">
-        <SimpleGrid columns={2} spacing={2}>
+        <SimpleGrid columns={{base: 1, sm: 2}} spacing={2}>
           {problem.selections.map((s, i) => {
             return <Button key={i} value={s}>{s}</Button>;
           })}
