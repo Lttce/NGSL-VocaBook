@@ -25,6 +25,8 @@ import {
 
 import data from "@/data/ngsl.json";
 
+import Topbar from "./_components/topbar";
+
 function rangedRand(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -144,29 +146,29 @@ const Ngsl = () => {
   };
 
   return (
-    <Container>
-      <Stack mt={4}>
-        <Card>
-          <CardHeader>
-            <Heading>VocaBook</Heading>
-          </CardHeader>
-          <CardBody>
-            <Stack divider={<StackDivider />} spacing="4">
-              <Problem />
-              <Choices />
-              <PageChanger />
-            </Stack>
-          </CardBody>
-        </Card>
-        <Answer />
-      </Stack>
-    </Container>
+    <Stack mt={4}>
+      <Card>
+        <CardBody>
+          <Stack divider={<StackDivider />} spacing="4">
+            <Problem />
+            <Choices />
+            <PageChanger />
+          </Stack>
+        </CardBody>
+      </Card>
+      <Answer />
+    </Stack>
   );
 };
 
 
 export default function Home() {
   return (
-    <Ngsl />
+    <>
+      <Topbar />
+      <Container>
+        <Ngsl />
+      </Container>
+    </>
   );
 }
