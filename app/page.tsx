@@ -86,12 +86,10 @@ const Ngsl = () => {
   const Problem = () => {
     return (
       <Box>
-        <Skeleton isLoaded={problem.question != ""}>
-          <Text fontSize="2xl" as="b">
-            {problem.question}
-          </Text>
-          <Text fontSize="sm">以下から意味を選択してください。</Text>
-        </Skeleton>
+        <Text fontSize="2xl" as="b">
+          {problem.question}
+        </Text>
+        <Text fontSize="sm">以下から意味を選択してください。</Text>
       </Box>
     );
   };
@@ -146,18 +144,20 @@ const Ngsl = () => {
   };
 
   return (
-    <Stack mt={4}>
-      <Card>
-        <CardBody>
-          <Stack divider={<StackDivider />} spacing="4">
-            <Problem />
-            <Choices />
-            <PageChanger />
-          </Stack>
-        </CardBody>
-      </Card>
-      <Answer />
-    </Stack>
+    <Skeleton isLoaded={problem.question != ""}>
+      <Stack mt={4}>
+        <Card>
+          <CardBody>
+            <Stack divider={<StackDivider />} spacing="4">
+              <Problem />
+              <Choices />
+              <PageChanger />
+            </Stack>
+          </CardBody>
+        </Card>
+        <Answer />
+      </Stack>
+    </Skeleton >
   );
 };
 
