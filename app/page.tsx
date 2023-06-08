@@ -25,6 +25,8 @@ import {
 
 import data from "@/data/ngsl.json";
 
+import Topbar from "./_components/topbar";
+
 function rangedRand(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -100,7 +102,7 @@ const Ngsl = () => {
 
     return (
       <ButtonGroup onClick={handleChoice} display="block">
-        <SimpleGrid columns={2} spacing={2}>
+        <SimpleGrid columns={{base: 1, sm: 2}} spacing={2}>
           {problem.selections.map((s, i) => {
             return <Button key={i} value={s}>{s}</Button>;
           })}
@@ -162,6 +164,11 @@ const Ngsl = () => {
 
 export default function Home() {
   return (
-    <Ngsl />
+    <>
+      <Topbar />
+      <Container>
+        <Ngsl />
+      </Container>
+    </>
   );
 }
