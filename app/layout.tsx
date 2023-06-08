@@ -1,5 +1,6 @@
 "use client";
 
+import { ColorModeScript } from "@chakra-ui/react";
 import { Inter } from 'next/font/google';
 
 import { Providers } from "./providers";
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="ja" data-theme="light">
       <body className={inter.className}>
+        <ColorModeScript type="cookie" nonce="testing" />
         <Providers>
           {children}
         </Providers>
