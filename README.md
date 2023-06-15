@@ -1,5 +1,7 @@
 # VocaBook
 
+**URL: [VovaBook](lttce.github.io/NGSL-VocaBook/)**
+
 これは、The New General Service List (NGSL) を使用した英単語帳アプリケーションです。
 
 NGSLは、英語学習者にとって最も重要な語彙リストの1つであり、一般英語の平均92%の単語が収録されています。
