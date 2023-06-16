@@ -1,6 +1,6 @@
 # VocaBook
 
-**URL: [VovaBook](lttce.github.io/NGSL-VocaBook/)**
+**URL: [VovaBook](https://vocabook.pages.dev/)**
 
 これは、The New General Service List (NGSL) を使用した英単語帳アプリケーションです。
 
